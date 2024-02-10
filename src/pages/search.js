@@ -10,7 +10,7 @@ export default function searchproducts() {
     const callAPI = async () => {
         try {
             setLoading(true)
-            const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+            const res = await fetch(`https://hvf9284ed5.execute-api.ap-south-1.amazonaws.com/dev/`);
             const data = await res.json();
             console.log(data);
             setLoading(false)
@@ -36,10 +36,22 @@ export default function searchproducts() {
             </Button>
         </div>
         : <LoadingSpinner/>}
+        <h2>Searched Products:</h2>
         {product.map((prdt, index) => 
         <div className='product' key={index}>
-          <div className='projectName'>{prdt.title}</div>
+          <div className='projectName'>{prdt.name}</div>
         </div>)}
+        <h2>Recommended Products for suggestion based on user history:</h2>
+        {product.map((prdt, index) => 
+        <div className='product' key={index}>
+          <div className='projectName'>{prdt.recommended}</div>
+        </div>)}
+        <h2>Stock Details:</h2>
+        {product.map((prdt, index) => 
+        <div className='product' key={index}>
+          <div className='projectName'>{prdt.name} - In stock - 10 units</div>
+        </div>)}
+
     </div>
     );
 
